@@ -27,3 +27,10 @@ export const createClientSupabaseClient = () => {
   clientSupabaseClient = createClient<Database>(supabaseUrl, supabaseAnonKey)
   return clientSupabaseClient
 }
+
+export const createClient = () => {
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://your-project-url.supabase.co';
+  const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'your-public-anon-key';
+  
+  return new SupabaseClient(supabaseUrl, supabaseKey);
+};
