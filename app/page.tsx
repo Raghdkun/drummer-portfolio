@@ -92,3 +92,13 @@ export default async function Home() {
     </main>
   )
 }
+
+// Add this import at the top of your file
+import { createClient } from '@supabase/supabase-js'
+import type { SupabaseClient } from '@supabase/supabase-js'
+
+// For server components, use this pattern to create the client
+const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL!,
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+)
