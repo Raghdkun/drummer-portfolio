@@ -1,0 +1,270 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 0 0% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 0 0% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 346.8 77.2% 49.8%;
+    --primary-foreground: 355.7 100% 97.3%;
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 0 0% 14.9%;
+    --muted-foreground: 0 0% 63.9%;
+    --accent: 12 6.5% 15.1%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 346.8 77.2% 49.8%;
+    --radius: 0.5rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Custom Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(10, 10, 10, 0.8);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, #e11d48, #9333ea);
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, #f43f5e, #a855f7);
+  box-shadow: 0 0 8px rgba(225, 29, 72, 0.5);
+}
+
+::-webkit-scrollbar-corner {
+  background: rgba(10, 10, 10, 0.8);
+}
+
+/* For Firefox */
+html {
+  scrollbar-color: #e11d48 rgba(10, 10, 10, 0.8);
+  scrollbar-width: thin;
+}
+
+/* Modern laser line border around the entire page */
+.border-page {
+  @apply relative min-h-screen;
+  background: linear-gradient(to bottom, #000000, #0a0a0a);
+}
+
+/* Main border laser effect */
+.border-page::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border: 2px solid transparent;
+  pointer-events: none;
+  z-index: 9999;
+  animation: laserBorder 8s linear infinite;
+}
+
+/* Corner accents */
+.border-page::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: 10000;
+  /* Top left corner */
+  background-image: linear-gradient(to right, #e11d48, transparent 15%),
+    linear-gradient(to bottom, #e11d48, transparent 15%), /* Top right corner */
+    linear-gradient(to left, #9333ea, transparent 15%), linear-gradient(to bottom, #9333ea, transparent 15%),
+    /* Bottom right corner */
+    linear-gradient(to left, #e11d48, transparent 15%), linear-gradient(to top, #e11d48, transparent 15%),
+    /* Bottom left corner */
+    linear-gradient(to right, #9333ea, transparent 15%), linear-gradient(to top, #9333ea, transparent 15%);
+  /* Top left corner */
+  background-position: 0 0, 0 0, /* Top right corner */ 100% 0, 100% 0, /* Bottom right corner */ 100% 100%, 100% 100%, /* Bottom left corner */
+    0 100%, 0 100%;
+  /* Top left corner */
+  background-size: 50px 2px, 2px 50px, /* Top right corner */ 50px 2px, 2px 50px, /* Bottom right corner */ 50px 2px,
+    2px 50px, /* Bottom left corner */ 50px 2px, 2px 50px;
+  background-repeat: no-repeat;
+  animation: cornerPulse 3s ease-in-out infinite;
+}
+
+@keyframes laserBorder {
+  0% {
+    border-image: linear-gradient(0deg, transparent 50%, #e11d48 50%, #9333ea 75%, transparent 75%) 1;
+    box-shadow: 0 0 15px rgba(225, 29, 72, 0.5);
+  }
+  25% {
+    border-image: linear-gradient(90deg, transparent 50%, #9333ea 50%, #e11d48 75%, transparent 75%) 1;
+    box-shadow: 0 0 15px rgba(147, 51, 234, 0.5);
+  }
+  50% {
+    border-image: linear-gradient(180deg, transparent 50%, #e11d48 50%, #9333ea 75%, transparent 75%) 1;
+    box-shadow: 0 0 15px rgba(225, 29, 72, 0.5);
+  }
+  75% {
+    border-image: linear-gradient(270deg, transparent 50%, #9333ea 50%, #e11d48 75%, transparent 75%) 1;
+    box-shadow: 0 0 15px rgba(147, 51, 234, 0.5);
+  }
+  100% {
+    border-image: linear-gradient(360deg, transparent 50%, #e11d48 50%, #9333ea 75%, transparent 75%) 1;
+    box-shadow: 0 0 15px rgba(225, 29, 72, 0.5);
+  }
+}
+
+@keyframes cornerPulse {
+  0%,
+  100% {
+    opacity: 1;
+    filter: drop-shadow(0 0 5px rgba(225, 29, 72, 0.8));
+  }
+  50% {
+    opacity: 0.6;
+    filter: drop-shadow(0 0 10px rgba(147, 51, 234, 0.8));
+  }
+}
+
+/* Navigation bar animations */
+@keyframes navItemHover {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.nav-item-active {
+  background: linear-gradient(90deg, rgba(225, 29, 72, 0.2), rgba(147, 51, 234, 0.2));
+  background-size: 200% 100%;
+  animation: navItemHover 3s ease infinite;
+}
+
+/* Custom cursor effects */
+.cursor-hover-area {
+  @apply relative overflow-hidden transition-all duration-300;
+}
+
+.cursor-hover-area::after {
+  content: "";
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(225, 29, 72, 0.3) 0%, rgba(225, 29, 72, 0) 70%);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 10;
+}
+
+.cursor-hover-area:hover {
+  @apply cursor-pointer;
+}
+
+.cursor-hover-area:hover::after {
+  opacity: 1;
+}
+
+/* Interactive elements for custom cursor */
+.interactive-element {
+  position: relative;
+  z-index: 1;
+}
+
+/* Magnetic effect for interactive elements */
+.interactive-element:hover {
+  transform: translateY(-2px);
+  transition: transform 0.3s ease;
+}
+
+/* Cursor glow effect */
+@keyframes cursorGlow {
+  0%,
+  100% {
+    filter: drop-shadow(0 0 10px rgba(225, 29, 72, 0.7));
+  }
+  50% {
+    filter: drop-shadow(0 0 20px rgba(147, 51, 234, 0.8));
+  }
+}
+
+/* Animation utilities */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-in {
+  animation-duration: 300ms;
+  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  animation-fill-mode: both;
+}
+
+.fade-in {
+  animation-name: fade-in;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Particle effect for cursor */
+@keyframes particleFade {
+  0% {
+    opacity: 0.8;
+    transform: scale(0.2);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1);
+  }
+}
+
+.cursor-particle {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: linear-gradient(to right, #e11d48, #9333ea);
+  animation: particleFade 1s forwards;
+  pointer-events: none;
+}

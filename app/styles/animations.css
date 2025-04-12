@@ -1,0 +1,77 @@
+@keyframes pulse-slow {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+@keyframes fade-in-slow {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Laser line animation for the border */
+@keyframes laserMove {
+  0% {
+    background-position: 0% 0%;
+  }
+  100% {
+    background-position: 200% 0%;
+  }
+}
+
+/* Corner accent animation */
+@keyframes cornerGlow {
+  0%,
+  100% {
+    filter: drop-shadow(0 0 5px rgba(225, 29, 72, 0.8));
+  }
+  50% {
+    filter: drop-shadow(0 0 10px rgba(147, 51, 234, 0.8));
+  }
+}
+
+/* Scrollbar thumb glow animation */
+@keyframes scrollThumbGlow {
+  0%,
+  100% {
+    box-shadow: 0 0 5px rgba(225, 29, 72, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 8px rgba(147, 51, 234, 0.5);
+  }
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.animate-fade-in-slow {
+  animation: fade-in-slow 1.5s ease-out forwards;
+}
+
+.bg-grid-white\/5 {
+  background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.05' fill-rule='evenodd'%3E%3Cpath d='M0 0h40v40H0V0zm1 1h38v38H1V1z'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+
+/* Add this to your existing animations.css file */
+
+@keyframes spin-slow {
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 3s linear infinite;
+}
